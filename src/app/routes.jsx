@@ -2,7 +2,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import Login from '../features/auth/Login'
 import Dashboard from '../features/dashboard/Dashboard'
-import FreezersPage from '../features/freezers/FreezersPage'
+import FreezersList from '../features/freezers/FreezersList'
+import FreezerForm from '../features/freezers/FreezerForm'
+import FreezerQR from '../features/freezers/FreezerQR'
 import CheckinPage from '../features/checkin/CheckinPage'
 import UsersPage from '../features/users/UsersPage'
 import ReportsPage from '../features/reports/ReportsPage'
@@ -39,7 +41,31 @@ export default function AppRoutes() {
             path="freezers"
             element={
               <RoleRoute allow={['adm', 'gerente']}>
-                <FreezersPage />
+                <FreezersList />
+              </RoleRoute>
+            }
+          />
+          <Route
+            path="freezers/new"
+            element={
+              <RoleRoute allow={['adm', 'gerente']}>
+                <FreezerForm />
+              </RoleRoute>
+            }
+          />
+          <Route
+            path="freezers/:id/edit"
+            element={
+              <RoleRoute allow={['adm', 'gerente']}>
+                <FreezerForm />
+              </RoleRoute>
+            }
+          />
+          <Route
+            path="freezers/:id/qr"
+            element={
+              <RoleRoute allow={['adm', 'gerente']}>
+                <FreezerQR />
               </RoleRoute>
             }
           />
@@ -67,6 +93,7 @@ export default function AppRoutes() {
               </RoleRoute>
             }
           />
+          <Route path="*" element={<NotFound />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
