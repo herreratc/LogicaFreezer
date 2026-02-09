@@ -8,6 +8,8 @@ export const useAuthStore = create((set) => ({
   loading: true,
 
   loadSession: async () => {
+    set({ loading: true })
+
     const { data } = await supabase.auth.getSession()
 
     if (data.session) {
@@ -34,8 +36,9 @@ export const useAuthStore = create((set) => ({
     } else {
       set({ session: null, user: null, profile: null })
     }
-  },
 
+    set({ loading: false })
+  },
 
   signIn: async (email, password) => {
     const { data, error } = await supabase.auth.signInWithPassword({
