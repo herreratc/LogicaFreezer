@@ -9,7 +9,6 @@ export const useAuthStore = create((set) => ({
 
   loadSession: async () => {
     set({ loading: true })
-
     const { data } = await supabase.auth.getSession()
 
     if (data.session) {
@@ -36,6 +35,8 @@ export const useAuthStore = create((set) => ({
     } else {
       set({ session: null, user: null, profile: null })
     }
+    set({ loading: false })
+  },
 
     set({ loading: false })
   },
@@ -48,6 +49,21 @@ export const useAuthStore = create((set) => ({
     if (error) throw error
 
     set({ session: data.session, user: data.user })
+
+    if (data.user) {
+      const { data: profile, error: profileError } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', data.user.id)
+        .single()
+
+      if (profileError) {
+        console.error('Erro ao buscar profile:', profileError)
+        console.error('Detalhes:', JSON.stringify(profileError, null, 2))
+      } else {
+        set({ profile })
+      }
+    }
   },
 
   signOut: async () => {

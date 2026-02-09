@@ -23,6 +23,11 @@ export default function AppRoutes() {
 
         <Route
           path="/app"
+          element={<Navigate to="/app/dashboard" replace />}
+        />
+
+        <Route
+          path="/app/dashboard"
           element={
             <ProtectedRoute>
               <AppLayout />
