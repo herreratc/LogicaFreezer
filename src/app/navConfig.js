@@ -1,18 +1,18 @@
 export const navConfig = {
   conferente: [
-    { label: 'Dashboard', to: '/app' },
-    { label: 'Conferir Freezer', to: '/app/conferir-freezer' },
+    { label: 'Dashboard', to: '/app/dashboard' },
+    { label: 'Conferir Freezer', to: '/app/checkin' },
   ],
   adm: [
-    { label: 'Dashboard', to: '/app' },
+    { label: 'Dashboard', to: '/app/dashboard' },
     { label: 'Freezers', to: '/app/freezers' },
-    { label: 'Relatórios', to: '/app/relatorios' },
+    { label: 'Relatorios', to: '/app/reports' },
   ],
   gerente: [
-    { label: 'Dashboard', to: '/app' },
+    { label: 'Dashboard', to: '/app/dashboard' },
     { label: 'Freezers', to: '/app/freezers' },
-    { label: 'Usuários', to: '/app/usuarios' },
-    { label: 'Relatórios', to: '/app/relatorios' },
+    { label: 'Usuarios', to: '/app/users' },
+    { label: 'Relatorios', to: '/app/reports' },
   ],
 }
 

@@ -7,11 +7,11 @@ export default function ProtectedRoute({ children }) {
   const loading = useAuthStore((s) => s.loading)
 
   if (loading) {
-    return <p>Carregando sessão...</p>
+    return <LoadingScreen />
   }
 
   if (!session) {
-    return <Navigate to="/login" />
+    return <Navigate to="/login" replace />
   }
 
   return children
