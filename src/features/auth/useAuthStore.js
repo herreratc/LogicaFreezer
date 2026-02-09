@@ -38,6 +38,8 @@ export const useAuthStore = create((set) => ({
     set({ loading: false })
   },
 
+    set({ loading: false })
+  },
 
   signIn: async (email, password) => {
     const { data, error } = await supabase.auth.signInWithPassword({
