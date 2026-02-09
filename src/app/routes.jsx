@@ -7,7 +7,6 @@ import { useAuthStore } from '../features/auth/useAuthStore'
 
 export default function AppRoutes() {
   const loadSession = useAuthStore((s) => s.loadSession)
-  const user = useAuthStore((s) => s.user)
 
   useEffect(() => {
     loadSession()
@@ -24,6 +23,11 @@ export default function AppRoutes() {
 
         <Route
           path="/app"
+          element={<Navigate to="/app/dashboard" replace />}
+        />
+
+        <Route
+          path="/app/dashboard"
           element={
             <ProtectedRoute>
               <Dashboard />

@@ -3,6 +3,11 @@ import { useAuthStore } from '../features/auth/useAuthStore'
 
 export default function ProtectedRoute({ children }) {
   const session = useAuthStore((s) => s.session)
+  const loading = useAuthStore((s) => s.loading)
+
+  if (loading) {
+    return <p>Carregando sessão...</p>
+  }
 
   if (!session) {
     return <Navigate to="/login" />
